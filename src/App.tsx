@@ -7,7 +7,7 @@ const App: React.FC = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
     <Routes>
-      <Route path="/schedule" element={<Schedule />} />
+      <Route path="/" element={<Schedule />} />
     </Routes>
     </Suspense>
   </Router>
