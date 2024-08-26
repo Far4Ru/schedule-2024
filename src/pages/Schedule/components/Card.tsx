@@ -1,8 +1,10 @@
 import "../../../style/Card.css"
 import React from "react";
+import { WeekType } from "../Schedule";
 
 interface CardConfig {
     name: string
+    weekType: WeekType
 }
 
 const Card: React.FC<CardConfig> = (props) => {

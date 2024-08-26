@@ -9,14 +9,21 @@ interface DataConfig {
   }[]
 }
 
+export enum WeekType {
+  ODD = 0,
+  EVEN = 1
+}
+
 const Schedule: React.FC = () => { 
   const [data, setData] = useState<DataConfig>({ name: '', schedule: []});
+  const [weekType, setWeekType] = useState<WeekType>(WeekType.ODD);
 
   useEffect(
     () => {
       getData().then((res)=>{
         setData(res)
       })
+      setWeekType(WeekType.ODD)
     }, []
   )
 
@@ -33,7 +40,7 @@ const Schedule: React.FC = () => {
 
       <div className="row">
         {data.schedule.map((item) => (
-          <Card name={item.title}/>
+          <Card name={item.title} weekType={weekType}/>
         ))}
       </div>
     </div>
