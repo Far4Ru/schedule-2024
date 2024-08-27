@@ -76,6 +76,12 @@ const Schedule: React.FC = () => {
     setWeekType(newWeekType)
   }
 
+  const getCurrentDay = () => {
+    const weekday = ["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"]
+
+    return getWeekType(today) === weekType ? weekday[today.getDay()] : ''
+  }
+
   return (
     <div className="schedule-container">
       <h2>Расписание</h2>
@@ -88,7 +94,7 @@ const Schedule: React.FC = () => {
 
       <div className="row">
         {data.schedule.map((item) => (
-          <Card name={item.title} weekType={weekType} lectures={item.lectures}/>
+          <Card name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()}/>
         ))}
       </div>
     </div>

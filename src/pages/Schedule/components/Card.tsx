@@ -6,6 +6,7 @@ interface CardConfig {
     name: string
     weekType: WeekType
     lectures: Lecture[]
+    currentDay: string
 }
 
 const Card: React.FC<CardConfig> = (props) => {
@@ -15,9 +16,13 @@ const Card: React.FC<CardConfig> = (props) => {
     return lectureWeekType === currentWeekType
   }
 
+  const getCardContainer = () => {
+      return props.name === props.currentDay? 'today-card' : 'card'
+  }
+
   return (
     <div className="column">
-        <div className="card">
+        <div className={getCardContainer()}>
         <h3>{props.name}</h3>
 
         {props.lectures.filter(e => compareWeekType(e, props.weekType)).map((lecture) => (
