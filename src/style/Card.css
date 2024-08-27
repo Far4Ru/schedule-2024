@@ -21,3 +21,28 @@
 	text-align: center;
 	background-color: #f1f1f1;
 }
+
+.inner-container {
+	display: inline-block;
+	word-wrap: break-word;
+}
+
+.leftcolumn {
+	width:20%;
+	float:left
+}
+
+.middlecolumn {
+	width:65%;
+	float:left
+}
+
+.rightcolumn {
+	width:15%;
+	float:left
+}
+
+.lecturer-name {
+	color: gray;
+	font-size: smaller;
+}
