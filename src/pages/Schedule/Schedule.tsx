@@ -29,14 +29,15 @@ const Schedule: React.FC = () => {
   const [data, setData] = useState<DataConfig>({ name: '', firstDay: '01.01.1970', schedule: []});
   const [weekType, setWeekType] = useState<WeekType>(WeekType.ODD);
   const [firstDay, setFirstDay] = useState<Date>(new Date());
-  const [today, setToday] = useState<Date>(new Date());
+  const [today] = useState<Date>(new Date());
 
   useEffect(
     () => {
       getData().then((res)=>{
         setData(res)
-        setFirstDay(getFirstDay(res.firstDay))
-        setWeekType(getWeekType(today))
+        const parsedFirstDay = getFirstDay(res.firstDay)
+        setFirstDay(parsedFirstDay)
+        setWeekType(getWeekType(new Date(), parsedFirstDay))
       })
     }, []
   )
@@ -52,13 +53,13 @@ const Schedule: React.FC = () => {
     return new Date(Date.parse(`${dayArray[1]}/${dayArray[0]}/${dayArray[2]}`))
   }
 
-  const getWeekType = (date: Date) => {
+  const getWeekType = (date: Date, from: Date) => {
       const dateCopy = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       // Set to nearest Thursday: current date + 4 - current day number
       // Make Sunday's day number 7
       dateCopy.setUTCDate(dateCopy.getUTCDate() + 4 - (dateCopy.getUTCDay()||7));
       // Calculate full weeks to nearest Thursday
-      const weekNumber: number = Math.ceil((((dateCopy.valueOf() - firstDay.valueOf()) / 86400000) + 1) / 7);
+      const weekNumber: number = Math.ceil((((dateCopy.valueOf() - from.valueOf()) / 86400000) + 1) / 7);
       // Return week number
       return weekNumber % 2 === 0 ? WeekType.EVEN : WeekType.ODD;
   }
@@ -79,14 +80,14 @@ const Schedule: React.FC = () => {
   const getCurrentDay = () => {
     const weekday = ["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"]
 
-    return getWeekType(today) === weekType ? weekday[today.getDay()] : ''
+    return getWeekType(today, firstDay) === weekType ? weekday[today.getDay()] : ''
   }
 
   return (
     <div className="schedule-container">
       <h2>Расписание</h2>
-      <p>{data.name}</p>
-      <p className="today-container">{todayFormated()} - {getWeekType(today) === WeekType.EVEN ? 'числ.' : 'знам.'}</p>
+      <p className="schedule-name">{data.name}</p>
+      <p className="today-container">{todayFormated()} - {getWeekType(today, firstDay) === WeekType.EVEN ? 'числ.' : 'знам.'}</p>
       <div className="switch-week-container">
         <button className={weekType === WeekType.EVEN ? 'switch-weel-button-selected' : 'switch-weel-button-unselected'} onClick={changeWeekType}>числитель</button>
         <button className={weekType === WeekType.ODD ? 'switch-weel-button-selected' : 'switch-weel-button-unselected'} onClick={changeWeekType}>знаменатель</button>

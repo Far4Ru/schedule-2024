@@ -25,10 +25,11 @@ const Card: React.FC<CardConfig> = (props) => {
         <div className={getCardContainer()}>
         <h3>{props.name}</h3>
 
-        {props.lectures.filter(e => compareWeekType(e, props.weekType)).map((lecture) => (
+        {props.lectures.filter(e => compareWeekType(e, props.weekType)).map((lecture, i) => (
           <div className="inner-container">
+              {i ? <hr className="hr-shelf"></hr> : ''}
               <p className="leftcolumn">{lecture.time}</p>
-              <p className="middlecolumn">{lecture.name} {lecture.type === 'лекция' ? '(Лек)' : '(Пр)'}<br /><text className="lecturer-name">{lecture.lecturer}</text></p>
+              <p className="middlecolumn">{lecture.name} {lecture.type === 'лекция' ? '(лек)' : '(пр)'}<br /><text className="lecturer-name">{lecture.lecturer}</text></p>
               <p className="rightcolumn">{lecture.classroom}</p>
           </div>
         ))}

@@ -29,7 +29,7 @@ body {
 
 .switch-week-container {
 	position: absolute;
-    top: 65px;
+    top: 80px;
     right: 20px;
 }
 
@@ -54,7 +54,7 @@ body {
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: manipulation;
-	margin-left: 7px;
+	margin-left: 12px;
 }
 
 .switch-weel-button-unselected {
@@ -78,5 +78,10 @@ body {
 	  user-select: none;
 	  -webkit-user-select: none;
 	  touch-action: manipulation;
-	  margin-left: 7px;
+	  margin-left: 12px;
+}
+
+.schedule-name {
+    margin-top: 36px;
+    margin-bottom: 42px;
 }
