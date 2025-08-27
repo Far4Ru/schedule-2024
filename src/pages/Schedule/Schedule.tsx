@@ -26,6 +26,7 @@ export enum WeekType {
   ODD = 0,
   EVEN = 1
 }
+const WEEKDAYS = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
 const Schedule: React.FC = () => { 
   const [data, setData] = useState<DataConfig>({ name: '', firstDay: '01.01.1970', schedule: []});
@@ -80,13 +81,10 @@ const Schedule: React.FC = () => {
   }
 
   const getCurrentDay = () => {
-    const weekday = ["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"]
-
-    return getWeekType(today, firstDay) === weekType ? weekday[today.getDay()] : ''
+    return getWeekType(today, firstDay) === weekType ? WEEKDAYS[today.getDay()] : ''
   }
 
   const getNextDay = (): { dayName: string; weekType: WeekType } => {
-    const weekday = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
     const currentDate = new Date();
     const nextDate = new Date(currentDate);
     
@@ -98,17 +96,17 @@ const Schedule: React.FC = () => {
     } else {
       const currentDay = currentDate.getDay();
       
-      // Следующий день
-      if (currentDay === 6) { // Суббота
-        nextDate.setDate(currentDate.getDate() + 2); // Понедельник
-      } else if (currentDay === 0) { // Воскресенье
-        nextDate.setDate(currentDate.getDate() + 1); // Понедельник
+      // Next day
+      if (currentDay === 6) { // Saturday
+        nextDate.setDate(currentDate.getDate() + 2); // Monday
+      } else if (currentDay === 0) { // Sunday
+        nextDate.setDate(currentDate.getDate() + 1); // Monday
       } else {
-        nextDate.setDate(currentDate.getDate() + 1); // Следующий день
+        nextDate.setDate(currentDate.getDate() + 1); // Next day
       }
     }
     
-    const dayName = weekday[nextDate.getDay()];
+    const dayName = WEEKDAYS[nextDate.getDay()];
     
     const nextWeekType = getWeekType(nextDate, firstDay);
     
