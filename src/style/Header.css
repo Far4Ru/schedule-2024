@@ -1,0 +1,21 @@
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px;
+    border-radius: var(--border-radius);
+    height: var(--header-height);
+    min-height: var(--header-height);
+}
+
+.left-text, .right-text {
+    font-size: clamp(12px, 1.8vw, 14px);
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.left-text{
+    font-size: clamp(18px, 1.8vw, 24px);
+}

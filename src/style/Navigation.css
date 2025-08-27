@@ -1,0 +1,63 @@
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px;
+    border-radius: var(--border-radius);
+    height: var(--nav-height);
+    min-height: var(--nav-height);
+}
+
+@media (orientation: portrait), (max-width: 768px) {
+    .nav-content {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .nav-left-text {
+        width: 100%;
+		color: gray;
+        text-align: center;
+    }
+}
+.nav-left-text {
+    font-size: clamp(12px, 1.8vw, 14px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-buttons button {
+    padding: 5px 40px;
+    border: none;
+	border-radius: 8px;
+    cursor: pointer;
+    font-size: clamp(11px, 1.4vw, 13px);
+    white-space: nowrap;
+    min-width: max-content;
+	touch-action: manipulation;
+    height: 30px;
+	user-select: none;
+	-webkit-user-select: none;
+	transition: all 200ms;
+}
+
+.switch-weel-button-selected {
+	background-color: #2ea44f;
+	color: #ffffff;
+}
+
+.switch-weel-button-unselected {
+    background-color: rgba(51, 51, 51, 0.05);
+    color: #333333;
+}
+
+.switch-weel-button-current {
+    text-decoration: underline;
+}

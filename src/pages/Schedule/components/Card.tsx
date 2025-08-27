@@ -7,6 +7,7 @@ interface CardConfig {
     weekType: WeekType
     lectures: Lecture[]
     currentDay: string
+    nextDay: { dayName: string, weekType: WeekType }
 }
 
 const Card: React.FC<CardConfig> = (props) => {
@@ -17,24 +18,69 @@ const Card: React.FC<CardConfig> = (props) => {
   }
 
   const getCardContainer = () => {
-      return props.name === props.currentDay? 'today-card' : 'card'
+      return props.name === props.currentDay? ' today-content-block' : ''
+  }
+  const getNextDayCardContainer = () => {
+      const isNextDay = props.name === props.nextDay.dayName
+      const isNextWeek = props.weekType === props.nextDay.weekType
+      return isNextDay && isNextWeek ? ' nextday-content-block' : '' 
+  }
+
+  const lectures = props.lectures.filter(e => compareWeekType(e, props.weekType))
+
+  const lecturesWithDividers = () => {
+    const result: Lecture[] = []
+    for (const lecture of lectures) {
+      result.push({
+        weekType: '',
+        time: '',
+        name: '',
+        type: '',
+        lecturer: '',
+        classroom: ''
+      })
+      result.push(lecture)
+    }
+    if (result.length > 0) { result.shift() }
+    return result
   }
 
   return (
-    <div className="column">
-        <div className={getCardContainer()}>
-        <h3>{props.name}</h3>
+    <article className={`content-block${getCardContainer()}${getNextDayCardContainer()}`}>
+        <h3 className="block-title">{props.name}</h3>
+        <div className="content-body">
+            {
+              lecturesWithDividers().map((lecture, i) => (
+                <div>
+                  {
+                    (lecture.weekType === '')
+                    ? <div className="divider"></div>
+                    : <div className="text-section">
+                        <div className="text-column">
+                            <div className="time-group">
+                                <div className="time-row">
+                                    <div className="time-block no-wrap">{lecture.time.split('-')[0]}</div>
+                                    <div className="time-separator no-wrap">-</div>
+                                    <div className="time-block no-wrap">{lecture.time.split('-')[1]}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="text-column">
+                            <div className="name-block">{lecture.name} {lecture.type === 'лекция' ? '(лек)' : '(пр)'}</div>
+                            <div className="author-block">{lecture.lecturer}</div>
+                        </div>
+                        <div className="text-column">
+                            <div className="code-block no-wrap">{lecture.classroom}</div>
+                        </div>
+                    </div>
+                  }
+                </div>
+                )
+              )
+            }
 
-        {props.lectures.filter(e => compareWeekType(e, props.weekType)).map((lecture, i) => (
-          <div className="inner-container">
-              {i ? <hr className="hr-shelf"></hr> : ''}
-              <p className="leftcolumn">{lecture.time}</p>
-              <p className="middlecolumn">{lecture.name} {lecture.type === 'лекция' ? '(лек)' : '(пр)'}<br /><text className="lecturer-name">{lecture.lecturer}</text></p>
-              <p className="rightcolumn">{lecture.classroom}</p>
-          </div>
-        ))}
         </div>
-    </div>
+    </article>
   )
 }
 

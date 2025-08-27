@@ -1,6 +1,8 @@
 import "../../style/Schedule.css"
 import React, { useState, useEffect }  from "react";
 import Card from "./components/Card";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
 
 export interface Lecture {
   weekType: string,
@@ -83,21 +85,50 @@ const Schedule: React.FC = () => {
     return getWeekType(today, firstDay) === weekType ? weekday[today.getDay()] : ''
   }
 
+  const getNextDay = (): { dayName: string; weekType: WeekType } => {
+    const weekday = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const currentDate = new Date();
+    const nextDate = new Date(currentDate);
+    
+    const isAugust = currentDate.getMonth() === 7;
+    
+    if (isAugust) {
+      nextDate.setMonth(8);
+      nextDate.setDate(1);
+    } else {
+      const currentDay = currentDate.getDay();
+      
+      // Следующий день
+      if (currentDay === 6) { // Суббота
+        nextDate.setDate(currentDate.getDate() + 2); // Понедельник
+      } else if (currentDay === 0) { // Воскресенье
+        nextDate.setDate(currentDate.getDate() + 1); // Понедельник
+      } else {
+        nextDate.setDate(currentDate.getDate() + 1); // Следующий день
+      }
+    }
+    
+    const dayName = weekday[nextDate.getDay()];
+    
+    const nextWeekType = getWeekType(nextDate, firstDay);
+    
+    return { dayName, weekType: nextWeekType };
+  }
+
   return (
     <div className="schedule-container">
-      <h2>Расписание</h2>
-      <p className="schedule-name">{data.name}</p>
-      <p className="today-container">{todayFormated()} - {getWeekType(today, firstDay) === WeekType.EVEN ? 'числ.' : 'знам.'}</p>
-      <div className="switch-week-container">
-        <button className={weekType === WeekType.EVEN ? 'switch-weel-button-selected' : 'switch-weel-button-unselected'} onClick={changeWeekType}>числитель</button>
-        <button className={weekType === WeekType.ODD ? 'switch-weel-button-selected' : 'switch-weel-button-unselected'} onClick={changeWeekType}>знаменатель</button>
-      </div>
-
-      <div className="row">
+      <Header title="Расписание" subtitle={data.name}/>
+      <Navigation
+        info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.EVEN ? 'числ.' : 'знам.'}`}
+        weekType={weekType}
+        currentWeekType={getWeekType(today, firstDay)}
+        onClick={changeWeekType}
+      />
+      <main className="content-blocks">
         {data.schedule.map((item) => (
-          <Card name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()}/>
+          <Card name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()} nextDay={getNextDay()}/>
         ))}
-      </div>
+      </main>
     </div>
   )
 }
