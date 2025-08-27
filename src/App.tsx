@@ -1,10 +1,10 @@
-import React, { lazy } from 'react';
-import './App.css';
-const Schedule = lazy(() => import('./pages/Schedule/Schedule'));
+import React, { lazy } from 'react'
+import './App.css'
+const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
 
 const App: React.FC = () => (
-  <Schedule />
-);
+    <Schedule />
+)
 
 
-export default App;
+export default App
