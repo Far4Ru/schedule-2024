@@ -19,3 +19,10 @@
 .left-text{
     font-size: clamp(18px, 1.8vw, 24px);
 }
+
+@media (orientation: portrait), (max-width: 768px) {    
+    .header-content {
+        height: auto;
+        min-height: auto;
+    }
+}

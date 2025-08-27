@@ -8,8 +8,8 @@
     --main-padding: 12px;
     --block-spacing: 10px;
     --border-radius: 6px;
-    --header-height: 50px;
-    --nav-height: 45px;
+    --header-height: 22px;
+    --nav-height: 22px;
     --content-block-min-height: 150px;
 }
 
@@ -25,4 +25,12 @@ body {
 
 html, body {
     overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    :root {
+        --main-padding: 6px;
+        --block-spacing: 5px;
+        --content-block-min-height: 120px;
+    }
 }

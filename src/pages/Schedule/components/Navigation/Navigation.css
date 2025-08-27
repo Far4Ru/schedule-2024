@@ -14,19 +14,6 @@
     min-height: var(--nav-height);
 }
 
-@media (orientation: portrait), (max-width: 768px) {
-    .nav-content {
-        flex-direction: column;
-        height: auto;
-        min-height: auto;
-    }
-    
-    .nav-left-text {
-        width: 100%;
-		color: gray;
-        text-align: center;
-    }
-}
 .nav-left-text {
     font-size: clamp(12px, 1.8vw, 14px);
     white-space: nowrap;
@@ -38,7 +25,6 @@
     display: flex;
     gap: 8px;
 }
-
 .nav-buttons button {
     padding: 5px 40px;
     /* width: 45vw; */
@@ -67,4 +53,26 @@
 
 .nav-button-current {
     text-decoration: underline;
+}
+
+@media (orientation: portrait), (max-width: 768px) {
+    .nav-content {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        gap: 8px;
+    }
+    
+    .nav-left-text {
+        width: 100%;
+		color: gray;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-buttons {
+        width: 100%;
+        justify-content: center;
+    }
 }
