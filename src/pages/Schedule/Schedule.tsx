@@ -125,8 +125,8 @@ const Schedule: React.FC = () => {
         onClick={changeWeekType}
       />
       <main className="content-blocks">
-        {data.schedule.map((item) => (
-          <Card name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()} nextDay={getNextDay()}/>
+        {data.schedule.map((item, index) => (
+          <Card key={index} name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()} nextDay={getNextDay()}/>
         ))}
       </main>
     </div>
