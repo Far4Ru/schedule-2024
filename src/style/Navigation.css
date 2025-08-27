@@ -35,6 +35,7 @@
 
 .nav-buttons button {
     padding: 5px 40px;
+    /* width: 45vw; */
     border: none;
 	border-radius: 8px;
     cursor: pointer;
