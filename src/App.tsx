@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import './style/App.css';
+import './App.css';
 const Schedule = lazy(() => import('./pages/Schedule/Schedule'));
 
 const App: React.FC = () => (

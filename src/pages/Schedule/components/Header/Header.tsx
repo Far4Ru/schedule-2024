@@ -1,4 +1,4 @@
-import "../../../style/Header.css"
+import "./Header.css"
 import React from "react";
 
 interface HeaderConfig {

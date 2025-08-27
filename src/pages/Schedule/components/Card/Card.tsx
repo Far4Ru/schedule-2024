@@ -1,6 +1,6 @@
-import "../../../style/Card.css"
+import "./Card.css"
 import React from "react";
-import { Lecture, WeekType } from "../Schedule";
+import { Lecture, WeekType } from "../../Schedule";
 
 interface CardConfig {
     name: string
@@ -51,7 +51,7 @@ const Card: React.FC<CardConfig> = (props) => {
         <div className="content-body">
             {
               lecturesWithDividers().map((lecture, i) => (
-                <div>
+                <div key={i}>
                   {
                     (lecture.weekType === '')
                     ? <div className="divider"></div>

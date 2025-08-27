@@ -1,8 +1,8 @@
-import "../../style/Schedule.css"
+import "./Schedule.css"
 import React, { useState, useEffect }  from "react";
-import Card from "./components/Card";
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
+import Card from "./components/Card/Card";
+import Header from "./components/Header/Header";
+import Navigation from "./components/Navigation/Navigation";
 
 export interface Lecture {
   weekType: string,

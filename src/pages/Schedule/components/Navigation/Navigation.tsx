@@ -1,6 +1,6 @@
-import "../../../style/Navigation.css"
+import "./Navigation.css"
 import React from "react";
-import { WeekType } from "../Schedule";
+import { WeekType } from "../../Schedule";
 
 interface NavigationConfig {
   info: string
