@@ -9,15 +9,10 @@
     flex-direction: column;
 }
 
-.header, .navigation {
-    width: 100%;
-    margin-bottom: var(--block-spacing);
-    flex-shrink: 0;
-}
-
 .content-blocks {
+    display: grid;
+    gap: var(--block-spacing);
     width: 100%;
-    flex: 1;
     min-height: 0;
     overflow: hidden;
 }
@@ -26,4 +21,13 @@
     .schedule-container {
         padding: 8px;
     }
+
+.content-blocks {
+    display: grid;
+    gap: var(--block-spacing);
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
 }

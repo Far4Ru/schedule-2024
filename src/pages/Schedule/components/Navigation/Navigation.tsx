@@ -11,10 +11,10 @@ interface NavigationConfig {
 
 const Navigation: React.FC<NavigationConfig> = (props) => {
   function getSelectedClass(weekType: WeekType) {
-    return props.weekType === weekType ? 'switch-weel-button-selected' : 'switch-weel-button-unselected'
+    return props.weekType === weekType ? 'nav-button-selected' : 'nav-button-unselected'
   }
   function getCurrentWeekClass(weekType: WeekType) {
-    return props.currentWeekType === weekType ? 'switch-weel-button-current' : 'switch-weel-button-notcurrent'
+    return props.currentWeekType === weekType ? 'nav-button-current' : 'nav-button-notcurrent'
   }
   return (
     <nav className="navigation">
