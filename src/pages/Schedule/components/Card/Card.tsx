@@ -1,6 +1,7 @@
 import "./Card.css"
 import React from "react";
 import { Lecture, WeekType } from "../../Schedule";
+import CardItem from "../CardItem/CardItem";
 
 interface CardConfig {
     name: string
@@ -55,24 +56,7 @@ const Card: React.FC<CardConfig> = (props) => {
                   {
                     (lecture.weekType === '')
                     ? <div className="divider"></div>
-                    : <div className="text-section">
-                        <div className="text-column">
-                            <div className="time-group">
-                                <div className="time-row">
-                                    <div className="time-block no-wrap">{lecture.time.split('-')[0]}</div>
-                                    <div className="time-separator no-wrap">-</div>
-                                    <div className="time-block no-wrap">{lecture.time.split('-')[1]}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="text-column">
-                            <div className="name-block">{lecture.name} {lecture.type === 'лекция' ? '(лек)' : '(пр)'}</div>
-                            <div className="author-block">{lecture.lecturer}</div>
-                        </div>
-                        <div className="text-column">
-                            <div className="code-block no-wrap">{lecture.classroom}</div>
-                        </div>
-                    </div>
+                    : <CardItem lecture={lecture}/>
                   }
                 </div>
                 )

@@ -19,6 +19,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: gray;
 }
 
 .nav-buttons {
@@ -65,7 +66,6 @@
     
     .nav-left-text {
         width: 100%;
-		color: gray;
         text-align: center;
     }
 }

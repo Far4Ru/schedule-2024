@@ -119,7 +119,7 @@ const Schedule: React.FC = () => {
     <div className="schedule-container">
       <Header title="Расписание" subtitle={data.name}/>
       <Navigation
-        info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.EVEN ? 'числ.' : 'знам.'}`}
+        info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.EVEN ? 'числитель' : 'знаменатель'}`}
         weekType={weekType}
         currentWeekType={getWeekType(today, firstDay)}
         onClick={changeWeekType}
