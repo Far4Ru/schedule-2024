@@ -42,6 +42,37 @@ const Schedule: React.FC = () => {
         return weekNumber % 2 === 0 ? WeekType.EVEN : WeekType.ODD
     }
 
+    const todayIsWeekend = () => {
+        const currentDate = new Date()
+        const todayIndex = currentDate.getDay()
+        if (todayIndex === 0 || todayIndex === 6) { return undefined }
+    }
+
+    const getNextDate = (): Date | undefined => {
+        const currentDate = new Date()
+        const nextDate = new Date(currentDate)
+        
+        const isAugust = currentDate.getMonth() === 7
+        
+        if (isAugust) {
+            nextDate.setDate(1)
+            nextDate.setMonth(8)
+        } else {
+            const currentDay = currentDate.getDay()
+        
+            // Next day
+            if (currentDay === 6) { // Saturday
+                nextDate.setDate(currentDate.getDate() + 2) // Monday
+            } else if (currentDay === 0) { // Sunday
+                nextDate.setDate(currentDate.getDate() + 1) // Monday
+            } else {
+                // nextDate.setDate(currentDate.getDate() + 1) // Next day
+                return undefined
+            }
+        }
+        return nextDate
+    }
+
     useEffect(
         () => {
             getData().then(res=>{
@@ -49,6 +80,13 @@ const Schedule: React.FC = () => {
                 const parsedFirstDay = getFirstDay(res.firstDay)
                 setFirstDay(parsedFirstDay)
                 setWeekType(getWeekType(new Date(), parsedFirstDay))
+                // Change to next week if today is a weekday
+                if (todayIsWeekend() === undefined) {
+                    const nextDate = getNextDate()
+                    if (nextDate) {
+                        setWeekType(getWeekType(nextDate, parsedFirstDay))
+                    }
+                }
             })
         }, [],
     )
@@ -67,30 +105,14 @@ const Schedule: React.FC = () => {
     }
 
     const getCurrentDay = () => {
+        const todayIndex = today.getDay()
+        if (todayIndex === 0 || todayIndex === 6) { return undefined }
         return getWeekType(today, firstDay) === weekType ? WEEKDAYS[today.getDay()] : ''
     }
 
-    const getNextDay = (): { dayName: string; weekType: WeekType } => {
-        const currentDate = new Date()
-        const nextDate = new Date(currentDate)
-        
-        const isAugust = currentDate.getMonth() === 7
-        
-        if (isAugust) {
-            nextDate.setDate(1)
-            nextDate.setMonth(8)
-        } else {
-            const currentDay = currentDate.getDay()
-        
-            // Next day
-            if (currentDay === 6) { // Saturday
-                nextDate.setDate(currentDate.getDate() + 2) // Monday
-            } else if (currentDay === 0) { // Sunday
-                nextDate.setDate(currentDate.getDate() + 1) // Monday
-            } else {
-                nextDate.setDate(currentDate.getDate() + 1) // Next day
-            }
-        }
+    const getNextDay = (): { dayName: string; weekType: WeekType } | undefined => {
+        const nextDate = getNextDate()
+        if (nextDate === undefined) { return undefined}
         
         const dayName = WEEKDAYS[nextDate.getDay()]
         

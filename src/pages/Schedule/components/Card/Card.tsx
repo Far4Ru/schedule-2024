@@ -7,8 +7,8 @@ interface CardConfig {
     name: string
     weekType: WeekType
     lectures: Lecture[]
-    currentDay: string
-    nextDay: { dayName: string, weekType: WeekType }
+    currentDay?: string
+    nextDay?: { dayName: string, weekType: WeekType }
 }
 
 const Card: React.FC<CardConfig> = props => {
@@ -22,6 +22,7 @@ const Card: React.FC<CardConfig> = props => {
         return props.name === props.currentDay? ' lesson-day--today' : ''
     }
     const getNextDayCardContainer = () => {
+        if (props.nextDay === undefined) { return '' }
         const isNextDay = props.name === props.nextDay.dayName
         const isNextWeek = props.weekType === props.nextDay.weekType
         return isNextDay && isNextWeek ? ' lesson-day--next' : '' 
