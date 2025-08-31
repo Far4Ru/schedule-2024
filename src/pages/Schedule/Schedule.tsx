@@ -95,7 +95,6 @@ const Schedule: React.FC = () => {
         const dayName = WEEKDAYS[nextDate.getDay()]
         
         const nextWeekType = getWeekType(nextDate, firstDay)
-        console.log(isAugust, nextDate, dayName, nextWeekType)
         
         return { dayName, weekType: nextWeekType }
     }
