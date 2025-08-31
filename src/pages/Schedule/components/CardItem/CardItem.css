@@ -1,4 +1,4 @@
-.text-section {
+.lesson {
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -7,7 +7,7 @@
     gap: 8px;
 }
 
-.text-column {
+.lesson_column {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,12 +15,12 @@
     min-width: 0;
 }
 
-.text-column > div {
+.lesson_column > div {
     max-height: 100%;
     overflow: hidden;
 }
 
-.time-group {
+.lesson__time {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,17 +33,17 @@
     align-items: center;
 }
 
-.time-block, .time-separator, .code-block {
+.lesson__start-time, .lesson__end-time, .lesson__time-separator, .lesson__location {
     font-size: clamp(0.64rem, 0.3958rem + 0.5208vw, 0.92rem);
     text-align: center;
     flex-shrink: 0;
 }
 
-.time-block {
+.lesson__start-time .lesson__end-time {
     min-width: 45px;
 }
 
-.time-separator {
+.lesson__time-separator {
     height: 1px;
     background-color: #ccc;
     margin: 4px 0;
@@ -51,11 +51,11 @@
     flex-shrink: 0;
 }
 
-.code-block {
+.lesson__location {
     min-width: 40px;
 }
 
-.name-block, .author-block {
+.lesson__name, .lesson__teacher {
     font-size: clamp(0.64rem, 0.3958rem + 0.5208vw, 0.92rem);
     text-align: center;
     overflow: hidden;
@@ -64,12 +64,12 @@
     hyphens: auto;
 }
 
-.name-block {
+.lesson__name {
     border-radius: 4px;
     margin-bottom: 4px;
 }
 
-.author-block {
+.lesson__teacher {
 	color: gray;
     font-size: clamp(0.54rem, 0.3958rem + 0.5208vw, 0.72rem);
     border-radius: 4px;
@@ -82,22 +82,22 @@
 }
 
 @media (orientation: portrait), (max-width: 768px) {
-    .text-section {
+    .lesson {
         gap: 6px;
     }
 
-    .time-group {
+    .lesson__time {
         flex-direction: row;
         gap: 5px;
     }
 }
 
 @media (max-width: 480px) {
-    .text-column {
+    .lesson_column {
         flex-direction: column;
     }
     
-    .time-group {
+    .lesson__time {
         flex-direction: column;
     }
 }

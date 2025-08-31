@@ -77,8 +77,8 @@ const Schedule: React.FC = () => {
         const isAugust = currentDate.getMonth() === 7
         
         if (isAugust) {
-            nextDate.setMonth(8)
             nextDate.setDate(1)
+            nextDate.setMonth(8)
         } else {
             const currentDay = currentDate.getDay()
         
@@ -95,12 +95,13 @@ const Schedule: React.FC = () => {
         const dayName = WEEKDAYS[nextDate.getDay()]
         
         const nextWeekType = getWeekType(nextDate, firstDay)
+        console.log(isAugust, nextDate, dayName, nextWeekType)
         
         return { dayName, weekType: nextWeekType }
     }
 
     return (
-        <div className="schedule-container">
+        <div className="schedule">
             <Header title="Расписание" subtitle={data.name}/>
             <Navigation
                 info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.EVEN ? 'числитель' : 'знаменатель'}`}
@@ -108,7 +109,7 @@ const Schedule: React.FC = () => {
                 currentWeekType={getWeekType(today, firstDay)}
                 onClick={changeWeekType}
             />
-            <main className="content-blocks">
+            <main className="schedule__main">
                 {data.schedule.map((item, index) => (
                     <Card key={index} name={item.title} weekType={weekType} lectures={item.lectures} currentDay={getCurrentDay()} nextDay={getNextDay()}/>
                 ))}

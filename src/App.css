@@ -10,7 +10,7 @@
     --border-radius: 8px;
     --header-height: 22px;
     --nav-height: 22px;
-    --content-block-min-height: 150px;
+    --lesson-day-min-height: 150px;
 }
 
 body {
@@ -32,6 +32,6 @@ html, body {
     :root {
         --main-padding: 6px;
         --block-spacing: 5px;
-        --content-block-min-height: 120px;
+        --lesson-day-min-height: 120px;
     }
 }

@@ -1,5 +1,5 @@
 
-.schedule-container {
+.schedule {
     padding: var(--main-padding);
     max-width: 100vw;
     overflow-x: hidden;
@@ -9,37 +9,39 @@
     flex-direction: column;
 }
 
-.content-blocks {
+.schedule__main {
     display: grid;
     gap: var(--block-spacing);
     width: 100%;
     min-height: 0;
+    padding: 12px;
     overflow: hidden;
 }
 
 @media (orientation: landscape) and (min-width: 1200px) {
-    .content-blocks {
+    .schedule__main {
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 }
 
 @media (orientation: landscape) and (max-width: 1199px) {
-    .content-blocks {
+    .schedule__main {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media (orientation: portrait), (max-width: 768px) {
-    .schedule-container {
+    .schedule {
         padding: 8px;
         gap: 2px;
     }
 
-    .content-blocks {
+    .schedule__main {
         display: grid;
         gap: var(--block-spacing);
         width: 100%;
         flex: 1;
+        padding: 4px;
         min-height: 0;
         overflow: hidden;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -48,7 +50,7 @@
 
 
 @media (max-width: 480px) {
-    .content-blocks {
+    .schedule__main {
         grid-template-columns: 1fr;
     }
 }

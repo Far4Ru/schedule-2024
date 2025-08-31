@@ -8,10 +8,10 @@ interface HeaderConfig {
 
 const Header: React.FC<HeaderConfig> = props => {
     return (
-        <header className="header">
-            <div className="header-content">
-                <div className="left-text">{props.title}</div>
-                <div className="right-text">{props.subtitle}</div>
+        <header className="schedule__header header">
+            <div className="header__content">
+                <div className="header__title">{props.title}</div>
+                <div className="header__group">{props.subtitle}</div>
             </div>
         </header>
     )

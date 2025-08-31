@@ -1,10 +1,10 @@
-.header, .navigation {
+.schedule__header, .schedule__nav {
     width: 100%;
     margin-bottom: var(--block-spacing);
     flex-shrink: 0;
 }
 
-.nav-content {
+.nav__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +14,7 @@
     min-height: var(--nav-height);
 }
 
-.nav-left-text {
+.nav-header__title {
     font-size: clamp(12px, 1.8vw, 14px);
     white-space: nowrap;
     overflow: hidden;
@@ -22,11 +22,11 @@
     color: gray;
 }
 
-.nav-buttons {
+.nav__controls {
     display: flex;
     gap: 8px;
 }
-.nav-buttons button {
+.nav__controls button {
     padding: 5px 40px;
     /* width: 45vw; */
     border: none;
@@ -41,37 +41,36 @@
 	-webkit-user-select: none;
 	transition: all 200ms;
 }
-
-.nav-button-selected {
-	background-color: #2ea44f;
-	color: #ffffff;
-}
-
-.nav-button-unselected {
+.nav__button {
     background-color: rgba(51, 51, 51, 0.05);
     color: #333333;
 }
 
-.nav-button-current {
+.nav__button--selected {
+	background-color: #2ea44f;
+	color: #ffffff;
+}
+
+.nav__button--current {
     text-decoration: underline;
 }
 
 @media (orientation: portrait), (max-width: 768px) {
-    .nav-content {
+    .nav__content {
         flex-direction: column;
         height: auto;
         min-height: auto;
         gap: 8px;
     }
     
-    .nav-left-text {
+    .nav-header__title {
         width: 100%;
         text-align: center;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-buttons {
+    .nav__controls {
         width: 100%;
         justify-content: center;
     }

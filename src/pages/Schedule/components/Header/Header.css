@@ -1,4 +1,4 @@
-.header-content {
+.header__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,7 +8,7 @@
     min-height: var(--header-height);
 }
 
-.left-text, .right-text {
+.header__title, .header__group {
     font-size: clamp(12px, 1.8vw, 14px);
     font-weight: bold;
     white-space: nowrap;
@@ -16,12 +16,12 @@
     text-overflow: ellipsis;
 }
 
-.left-text{
+.header__title{
     font-size: clamp(18px, 1.8vw, 24px);
 }
 
 @media (orientation: portrait), (max-width: 768px) {    
-    .header-content {
+    .header__content {
         height: auto;
         min-height: auto;
     }

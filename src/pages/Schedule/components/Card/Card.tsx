@@ -19,12 +19,12 @@ const Card: React.FC<CardConfig> = props => {
     }
 
     const getCardContainer = () => {
-        return props.name === props.currentDay? ' today-content-block' : ''
+        return props.name === props.currentDay? ' lesson-day--today' : ''
     }
     const getNextDayCardContainer = () => {
         const isNextDay = props.name === props.nextDay.dayName
         const isNextWeek = props.weekType === props.nextDay.weekType
-        return isNextDay && isNextWeek ? ' nextday-content-block' : '' 
+        return isNextDay && isNextWeek ? ' lesson-day--next' : '' 
     }
 
     const lectures = props.lectures.filter(e => compareWeekType(e, props.weekType))
@@ -47,15 +47,15 @@ const Card: React.FC<CardConfig> = props => {
     }
 
     return (
-        <article className={`content-block${getCardContainer()}${getNextDayCardContainer()}`}>
-            <h3 className="block-title">{props.name}</h3>
-            <div className="content-body">
+        <article className={`lesson-day${getCardContainer()}${getNextDayCardContainer()}`}>
+            <h3 className="lesson-day__title">{props.name}</h3>
+            <div className="lesson-day__body">
                 {
                     lecturesWithDividers().map((lecture, i) => (
                         <div key={i}>
                             {
                                 (lecture.weekType === '')
-                                    ? <div className="divider"></div>
+                                    ? <div className="lesson-day__divider"></div>
                                     : <CardItem lecture={lecture}/>
                             }
                         </div>

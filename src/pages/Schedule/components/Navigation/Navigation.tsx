@@ -11,18 +11,18 @@ interface NavigationConfig {
 
 const Navigation: React.FC<NavigationConfig> = props => {
     function getSelectedClass(weekType: WeekType) {
-        return props.weekType === weekType ? 'nav-button-selected' : 'nav-button-unselected'
+        return props.weekType === weekType ? ' nav__button--selected' : ''
     }
     function getCurrentWeekClass(weekType: WeekType) {
-        return props.currentWeekType === weekType ? 'nav-button-current' : 'nav-button-notcurrent'
+        return props.currentWeekType === weekType ? ' nav__button--current' : ''
     }
     return (
-        <nav className="navigation">
-            <div className="nav-content">
-                <div className="nav-left-text">{props.info}</div>
-                <div className="nav-buttons">
-                    <button className={`${getSelectedClass(WeekType.EVEN)} ${getCurrentWeekClass(WeekType.EVEN)}`} onClick={props.onClick}>числитель</button>
-                    <button className={`${getSelectedClass(WeekType.ODD)} ${getCurrentWeekClass(WeekType.ODD)}`} onClick={props.onClick}>знаменатель</button>
+        <nav className="schedule__nav nav">
+            <div className="nav__content">
+                <div className="nav-header__title">{props.info}</div>
+                <div className="nav__controls">
+                    <button className={`nav__button${getSelectedClass(WeekType.EVEN)}${getCurrentWeekClass(WeekType.EVEN)}`} onClick={props.onClick}>числитель</button>
+                    <button className={`nav__button${getSelectedClass(WeekType.ODD)}${getCurrentWeekClass(WeekType.ODD)}`} onClick={props.onClick}>знаменатель</button>
                 </div>
             </div>
         </nav>
