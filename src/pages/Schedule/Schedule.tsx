@@ -21,10 +21,21 @@ const Schedule: React.FC = () => {
     const [today] = useState<Date>(new Date())
 
     const getData = async () => {
+        const decodeBase64Unicode = (base64String: any) => {
+            const cleanBase64 = base64String.replace(/[\n\s]/g, '')
+            const binaryString = atob(cleanBase64)
+    
+            const utf8String = decodeURIComponent(
+                binaryString.split('').map(char => 
+                    '%' + ('00' + char.charCodeAt(0).toString(16)).slice(-2),
+                ).join(''),
+            )
+            return utf8String
+        }
         const data = process.env.REACT_APP_DATA
         if (data) {
-            const decodedData = atob(data)
-            return JSON.parse(decodedData)
+            const decodedString = decodeBase64Unicode(data)
+            return JSON.parse(decodedString)
         }
         const fetchData = await fetch('data.json')
         const json = await fetchData.json()
