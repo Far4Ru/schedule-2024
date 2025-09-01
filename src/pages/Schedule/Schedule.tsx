@@ -23,7 +23,8 @@ const Schedule: React.FC = () => {
     const getData = async () => {
         const data = process.env.REACT_APP_DATA
         if (data) {
-            return Buffer.from(data, 'base64').toJSON()
+            const decodedData = atob(data)
+            return JSON.parse(decodedData)
         }
         const fetchData = await fetch('data.json')
         const json = await fetchData.json()
