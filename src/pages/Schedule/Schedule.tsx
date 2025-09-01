@@ -22,6 +22,7 @@ const Schedule: React.FC = () => {
 
     const getData = async () => {
         const decodeBase64Unicode = (base64String: any) => {
+            console.log(base64String)
             const cleanBase64 = base64String.replace(/[\n\s]/g, '')
             const binaryString = atob(cleanBase64)
     
