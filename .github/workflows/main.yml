@@ -26,7 +26,6 @@ jobs:
     - name: Create environment file
       run: |
         echo "REACT_APP_DATA=${{ secrets.DATA }}" >> .env
-        cat .env
     
     - name: Build React app to docs
       run: npm run build
