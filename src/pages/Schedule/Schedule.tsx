@@ -21,6 +21,8 @@ const Schedule: React.FC = () => {
     const [today] = useState<Date>(new Date())
 
     const getData = async () => {
+        const data = process.env.REACT_APP_DATA
+        if (data) { return JSON.parse(data) }
         const fetchData = await fetch('data.json')
         const json = await fetchData.json()
         return json
