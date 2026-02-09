@@ -33,7 +33,7 @@ jobs:
     - name: Build React app to docs
       run: |
         npm run build
-        date '+%Y-%m-%d %H:%M:%S' > build/update_time.txt
+        date '+%Y-%m-%d %H:%M:%S' > ./docs/update_time.txt
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
