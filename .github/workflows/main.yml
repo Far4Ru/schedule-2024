@@ -29,6 +29,7 @@ jobs:
         echo "${{ secrets.DATA }}" | base64 -d > decoded_data.txt
         echo "REACT_APP_DATA=$(cat decoded_data.txt)" > .env
         rm decoded_data.txt
+        date '+%Y-%m-%d %H:%M:%S' > update_time.txt
     
     - name: Build React app to docs
       run: npm run build
