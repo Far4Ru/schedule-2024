@@ -24,13 +24,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Create environment file
-      run: |
-        echo "${{ secrets.DATA }}" | base64 -d > decoded_data.txt
-        echo "REACT_APP_DATA=$(cat decoded_data.txt)" > .env
-        rm decoded_data.txt
-    
     - name: Build React app to docs
+      env:
+        REACT_APP_DATA: ${{ secrets.DATA }}
       run: |
         npm run build
         date '+%Y-%m-%d %H:%M:%S' > ./docs/update_time.txt

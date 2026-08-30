@@ -14,7 +14,7 @@ interface CardConfig {
 const Card: React.FC<CardConfig> = props => {
 
     const compareWeekType = (lecture: Lecture, currentWeekType: WeekType) => {
-        const lectureWeekType = lecture.weekType === 'числитель' ? WeekType.EVEN : WeekType.ODD
+        const lectureWeekType = lecture.weekType === 'числитель' ? WeekType.ODD : WeekType.EVEN
         return lectureWeekType === currentWeekType
     }
 
@@ -26,6 +26,13 @@ const Card: React.FC<CardConfig> = props => {
         const isNextDay = props.name === props.nextDay.dayName
         const isNextWeek = props.weekType === props.nextDay.weekType
         return isNextDay && isNextWeek ? ' lesson-day--next' : '' 
+    }
+    const getCardLabel = () => {
+        if (props.name === props.currentDay) { return 'Сегодня' }
+        if (props.nextDay === undefined) { return undefined }
+        const isNextDay = props.name === props.nextDay.dayName
+        const isNextWeek = props.weekType === props.nextDay.weekType
+        return isNextDay && isNextWeek ? 'Следующий день' : undefined
     }
 
     const lectures = props.lectures.filter(e => compareWeekType(e, props.weekType))
@@ -49,6 +56,7 @@ const Card: React.FC<CardConfig> = props => {
 
     return (
         <article className={`lesson-day${getCardContainer()}${getNextDayCardContainer()}`}>
+            {getCardLabel() && <div className="lesson-day__label">{getCardLabel()}</div>}
             <h3 className="lesson-day__title">{props.name}</h3>
             <div className="lesson-day__body">
                 {

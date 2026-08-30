@@ -29,3 +29,7 @@ data.json
 decoded.txt
 
 .vscode
+
+.env
+data
+package-lock.json

@@ -23,7 +23,13 @@ const Schedule: React.FC = () => {
     const getData = async () => {
         const data = process.env.REACT_APP_DATA
         if (data) {
-            return JSON.parse(data)
+            try {
+                return JSON.parse(data)
+            } catch {
+                const bytes = Uint8Array.from(atob(data), character => character.charCodeAt(0))
+                const decodedData = new TextDecoder().decode(bytes)
+                return JSON.parse(decodedData)
+            }
         }
         const fetchData = await fetch('data.json')
         const json = await fetchData.json()
@@ -104,7 +110,7 @@ const Schedule: React.FC = () => {
 
     const changeWeekType = (e: any) => {
         const text: string = e.target.innerText
-        const newWeekType = text === 'числитель' ? WeekType.EVEN : WeekType.ODD
+        const newWeekType = text === 'числитель' ? WeekType.ODD : WeekType.EVEN
         setWeekType(newWeekType)
     }
 
@@ -129,7 +135,7 @@ const Schedule: React.FC = () => {
         <div className="schedule">
             <Header title="Расписание" subtitle={data.name}/>
             <Navigation
-                info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.EVEN ? 'числитель' : 'знаменатель'}`}
+                info={`${todayFormated()} - ${getWeekType(today, firstDay) === WeekType.ODD ? 'числитель' : 'знаменатель'}`}
                 weekType={weekType}
                 currentWeekType={getWeekType(today, firstDay)}
                 onClick={changeWeekType}

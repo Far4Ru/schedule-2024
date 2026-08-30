@@ -21,8 +21,8 @@ const Navigation: React.FC<NavigationConfig> = props => {
             <div className="nav__content">
                 <div className="nav-header__title">{props.info}</div>
                 <div className="nav__controls">
-                    <button className={`nav__button${getSelectedClass(WeekType.EVEN)}${getCurrentWeekClass(WeekType.EVEN)}`} onClick={props.onClick}>числитель</button>
-                    <button className={`nav__button${getSelectedClass(WeekType.ODD)}${getCurrentWeekClass(WeekType.ODD)}`} onClick={props.onClick}>знаменатель</button>
+                    <button className={`nav__button${getSelectedClass(WeekType.ODD)}${getCurrentWeekClass(WeekType.ODD)}`} onClick={props.onClick}>числитель</button>
+                    <button className={`nav__button${getSelectedClass(WeekType.EVEN)}${getCurrentWeekClass(WeekType.EVEN)}`} onClick={props.onClick}>знаменатель</button>
                 </div>
             </div>
         </nav>

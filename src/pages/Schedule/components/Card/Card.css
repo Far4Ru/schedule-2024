@@ -9,14 +9,39 @@
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 }
 
 .lesson-day--today {
 	border: medium solid #2ea44f;
+    padding-top: 34px;
 }
 
 .lesson-day--next {
 	border: medium solid #447fc1;
+    padding-top: 34px;
+}
+
+.lesson-day__label {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 12px 5px;
+    border-radius: 0 0 8px 8px;
+    color: #fff;
+    font-size: clamp(10px, 1.5vw, 12px);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.lesson-day--today .lesson-day__label {
+    background-color: #2ea44f;
+}
+
+.lesson-day--next .lesson-day__label {
+    background-color: #447fc1;
 }
 
 .lesson-day__title {
@@ -44,14 +69,35 @@
     .lesson-day__title {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        left: 6px;
         transform: rotate(180deg);
         margin: 0;
-        align-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(6px, 1.5vh, 14px);
+        line-height: 1;
+        white-space: nowrap;
+        overflow-wrap: normal;
+        word-break: normal;
     }
     .lesson-day {
         flex-direction: row;
         gap: 5px;
-        padding: 5px;
+        padding: 5px 5px 5px 24px;
+    }
+
+    .lesson-day--today,
+    .lesson-day--next {
+        padding: 32px 5px 5px 24px;
+    }
+
+    .lesson-day--today .lesson-day__title,
+    .lesson-day--next .lesson-day__title {
+        top: 32px;
     }
     
     .lesson-day__body {
